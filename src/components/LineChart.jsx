@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import {  Box, Typography, useTheme } from '@mui/material';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import { Box, Typography, useTheme } from '@mui/material';
 import { tokens } from '../theme';
 
 const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
@@ -17,7 +17,6 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
         if (data) {
           // Get the keys of the data object
           const keys = Object.keys(data);
-
           // Map the AQMSData values to the required format
           const lineData = keys.map(key => ({
             Time: data[key].Time,
@@ -79,15 +78,61 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
         data={chartData}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       >
+        <defs>
+          <linearGradient id="gradientPressure" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={colors.redAccent[500]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.redAccent[500]} stopOpacity={0} />
+          </linearGradient>
+          <linearGradient id="gradientGasValue" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={colors.greenAccent[500]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.greenAccent[500]} stopOpacity={0} />
+          </linearGradient>
+          <linearGradient id="gradientHumidity" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={colors.blueAccent[300]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.blueAccent[300]} stopOpacity={0} />
+          </linearGradient>
+          <linearGradient id="gradientTemperature" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={colors.redAccent[200]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.redAccent[200]} stopOpacity={0} />
+          </linearGradient>
+        </defs>
         <CartesianGrid stroke={colors.grey[100]} />
         <XAxis dataKey="Time" tick={{ fill: colors.grey[100] }} />
         <YAxis tick={{ fill: colors.grey[100] }} />
         <Tooltip containerStyle={{ color: colors.primary[500] }} />
         <Legend formatter={renderLegendText} />
-        <Area type="monotone" dataKey="Pressure" stroke={colors.redAccent[500]} fill={colors.redAccent[500]} dot={{ stroke: colors.background }} />
-        <Area type="monotone" dataKey="GasValue" stroke={colors.greenAccent[500]} fill={colors.greenAccent[500]} dot={{ stroke: colors.background }} />
-        <Area type="monotone" dataKey="Humidity" stroke={colors.blueAccent[300]} fill={colors.blueAccent[300]} dot={{ stroke: colors.background }} />
-        <Area type="monotone" dataKey="Temperature" stroke={colors.redAccent[200]} fill={colors.redAccent[200]} dot={{ stroke: colors.background }} />
+        <Area
+          type="monotone"
+          dataKey="Pressure"
+          stroke={colors.redAccent[500]}
+          strokeWidth={2}
+          fill="url(#gradientPressure)"
+          dot={{ stroke: colors.background }}
+        />
+        <Area
+          type="monotone"
+          dataKey="GasValue"
+          stroke={colors.greenAccent[500]}
+          strokeWidth={2}
+          fill="url(#gradientGasValue)"
+          dot={{ stroke: colors.background }}
+        />
+        <Area
+          type="monotone"
+          dataKey="Humidity"
+          stroke={colors.blueAccent[300]}
+          strokeWidth={2}
+          fill="url(#gradientHumidity)"
+          dot={{ stroke: colors.background }}
+        />
+        <Area
+          type="monotone"
+          dataKey="Temperature"
+          stroke={colors.redAccent[200]}
+          strokeWidth={2}
+          fill="url(#gradientTemperature)"
+          dot={{ stroke: colors.background }}
+        />
       </AreaChart>
     </ResponsiveContainer>
   );

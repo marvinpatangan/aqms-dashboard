@@ -21,19 +21,19 @@ const BarChart = ({ isDashboard = false }) => {
           const { GasValue, Humidity, Pressure, Temperature } = latestAQMSData;
           const chartData = [
             {
-              country: "Gas Value",
+              gas: "Gas Value",
               value: parseFloat(GasValue) || 0,
             },
             {
-              country: "Humidity",
+              gas: "Humidity",
               value: parseFloat(Humidity) || 0,
             },
             {
-              country: "Pressure",
+              gas: "Pressure",
               value: parseFloat(Pressure) || 0,
             },
             {
-              country: "Temperature",
+              gas: "Temperature",
               value: parseFloat(Temperature) || 0,
             },
           ];
@@ -49,14 +49,7 @@ const BarChart = ({ isDashboard = false }) => {
 
     fetchAQMSData();
   }, []);
-
-  const customColors = [
-    colors.barChart.gasValue,
-    colors.barChart.humidity,
-    colors.barChart.pressure,
-    colors.barChart.temperature,
-  ];
-
+  
   return (
     <ResponsiveBar
       data={chartData}
@@ -89,7 +82,7 @@ const BarChart = ({ isDashboard = false }) => {
         },
       }}
       keys={["value"]}
-      indexBy="country"
+      indexBy="gas"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -170,7 +163,7 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
+        return e.id + ": " + e.formattedValue + " in gas: " + e.indexValue;
       }}
     />
   );
