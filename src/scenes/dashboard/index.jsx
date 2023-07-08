@@ -16,7 +16,7 @@ const Dashboard = () => {
     const fetchLatestAQMSData = async () => {
       try {
         const response = await fetch(
-          "https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/AQMSData.json"
+          "https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/LatestAQMSData.json"
         );
         const data = await response.json();
         console.log("Fetched data:", data); // Log the entire data object

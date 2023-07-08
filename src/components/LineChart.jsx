@@ -12,7 +12,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
     // Function to fetch the AQMSData values from Firebase
     const fetchAQMSData = async () => {
       try {
-        const response = await fetch('https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/AQMSData.json');
+        const response = await fetch('https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/LatestAQMSData.json');
         const data = await response.json();
         if (data) {
           // Get the keys of the data object
@@ -105,7 +105,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Pressure"
           stroke={colors.redAccent[500]}
-          strokeWidth={2}
+          strokeWidth={3}
           fill="url(#gradientPressure)"
           dot={{ stroke: colors.background }}
         />
@@ -113,7 +113,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="GasValue"
           stroke={colors.greenAccent[500]}
-          strokeWidth={2}
+          strokeWidth={3}
           fill="url(#gradientGasValue)"
           dot={{ stroke: colors.background }}
         />
@@ -121,7 +121,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Humidity"
           stroke={colors.blueAccent[300]}
-          strokeWidth={2}
+          strokeWidth={3}
           fill="url(#gradientHumidity)"
           dot={{ stroke: colors.background }}
         />
@@ -129,7 +129,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Temperature"
           stroke={colors.redAccent[200]}
-          strokeWidth={2}
+          strokeWidth={3}
           fill="url(#gradientTemperature)"
           dot={{ stroke: colors.background }}
         />

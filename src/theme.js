@@ -118,13 +118,6 @@ export const tokens = (mode) => ({
           900: "#e1e2fe",
         },
       }),
-
-      barChart: {
-        gasValue: "#ff0000", // Customize the color for Gas Value
-        humidity: "#868dfb", // Customize the color for Humidity
-        pressure: "#0000ff", // Customize the color for Pressure
-        temperature: "#ffff00", // Customize the color for Temperature
-      },
 });
 
 // mui theme settings

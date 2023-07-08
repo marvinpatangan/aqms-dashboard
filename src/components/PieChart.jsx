@@ -12,7 +12,7 @@ const PieChart = () => {
     const fetchAQMSData = async () => {
       try {
         const response = await fetch(
-          "https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/AQMSData.json"
+          "https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/LatestAQMSData.json"
         );
         const data = await response.json();
         if (data) {
