@@ -105,7 +105,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Pressure"
           stroke={colors.redAccent[500]}
-          strokeWidth={3}
+          strokeWidth={2.5}
           fill="url(#gradientPressure)"
           dot={{ stroke: colors.background }}
         />
@@ -113,7 +113,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="GasValue"
           stroke={colors.greenAccent[500]}
-          strokeWidth={3}
+          strokeWidth={2.5}
           fill="url(#gradientGasValue)"
           dot={{ stroke: colors.background }}
         />
@@ -121,15 +121,15 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Humidity"
           stroke={colors.blueAccent[300]}
-          strokeWidth={3}
+          strokeWidth={2.5}
           fill="url(#gradientHumidity)"
           dot={{ stroke: colors.background }}
         />
         <Area
           type="monotone"
           dataKey="Temperature"
-          stroke={colors.redAccent[200]}
-          strokeWidth={3}
+          stroke={colors.redAccent[100]}
+          strokeWidth={2.5}
           fill="url(#gradientTemperature)"
           dot={{ stroke: colors.background }}
         />

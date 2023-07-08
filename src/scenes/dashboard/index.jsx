@@ -1,9 +1,9 @@
-import { Box, Typography, useTheme } from "@mui/material";
-import { tokens } from "../../theme";
-import { useState, useEffect } from "react";
-import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
-import StatBox from "../../components/StatBox";
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
+import { tokens } from '../../theme';
+import Header from '../../components/Header';
+import LineChart from '../../components/LineChart';
+import StatBox from '../../components/StatBox';
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 
 const Dashboard = () => {
@@ -15,27 +15,46 @@ const Dashboard = () => {
     // Function to fetch the latest AQMSData values from Firebase
     const fetchLatestAQMSData = async () => {
       try {
-        const response = await fetch(
-          "https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/LatestAQMSData.json"
-        );
+        const response = await fetch('https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/LatestAQMSData.json');
         const data = await response.json();
-        console.log("Fetched data:", data); // Log the entire data object
+        console.log('Fetched data:', data); // Log the entire data object
         if (data) {
           // Get the latest data object
           const latestKey = Object.keys(data).pop();
           const latestAQMSData = data[latestKey];
           setLatestData(latestAQMSData);
-          console.log("Latest AQMSData:", latestAQMSData); // Log the latestAQMSData
+          console.log('Latest AQMSData:', latestAQMSData); // Log the latestAQMSData
         } else {
-          console.log("Failed to fetch AQMSData");
+          console.log('Failed to fetch AQMSData');
         }
       } catch (error) {
-        console.error("Error fetching AQMSData:", error);
+        console.error('Error fetching AQMSData:', error);
       }
     };
-    
-  
+
     fetchLatestAQMSData();
+  }, []);
+
+  const [airAlert, setAirAlert] = useState('');
+
+  useEffect(() => {
+    // Function to fetch the airAlert value from Firebase
+    const fetchAirAlert = async () => {
+      try {
+        const response = await fetch('https://air-quality-monitoring-s-88dae-default-rtdb.asia-southeast1.firebasedatabase.app/Notif/airStatus.json');
+        const data = await response.json();
+        console.log('Fetched airAlert:', data); // Log the airAlert value
+        if (data) {
+          setAirAlert(data);
+        } else {
+          console.log('Failed to fetch airAlert');
+        }
+      } catch (error) {
+        console.error('Error fetching airAlert:', error);
+      }
+    };
+
+    fetchAirAlert();
   }, []);
 
   return (
@@ -54,7 +73,7 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 3"
+          gridColumn="span 2"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -62,15 +81,15 @@ const Dashboard = () => {
           borderRadius={5}
         >
           <StatBox
-            title={latestData && latestData.GasValue ? latestData.GasValue : "XXX"}
+            title={latestData && latestData.GasValue ? latestData.GasValue : 'XXX'}
             subtitle="Gas Value"
             progress="1"
             increase=""
-            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: '26px' }} />}
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn="span 2"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -78,16 +97,15 @@ const Dashboard = () => {
           borderRadius={5}
         >
           <StatBox
-            title={latestData && latestData.Humidity ? latestData.Humidity : "XXX"}
+            title={latestData && latestData.Humidity ? latestData.Humidity : 'XXX'}
             subtitle="Humidity"
             progress="1"
             increase=""
-            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: '26px' }} />}
           />
-          {console.log("GasValue:", latestData && latestData.GasValue ? latestData.GasValue : "XXX")}
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn="span 2"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -95,15 +113,15 @@ const Dashboard = () => {
           borderRadius={5}
         >
           <StatBox
-            title={latestData && latestData.Pressure ? latestData.Pressure : "XXX"}
+            title={latestData && latestData.Pressure ? latestData.Pressure : 'XXX'}
             subtitle="Pressure"
             progress="1"
             increase=""
-            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: '26px' }} />}
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn="span 2"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -111,11 +129,27 @@ const Dashboard = () => {
           borderRadius={5}
         >
           <StatBox
-            title={latestData && latestData.Temperature ? latestData.Temperature : "XXX"}
+            title={latestData && latestData.Temperature ? latestData.Temperature : 'XXX'}
             subtitle="Temperature"
             progress="1"
             increase=""
-            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: '26px' }} />}
+          />
+        </Box>
+        <Box
+          gridColumn="span 4"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          borderRadius={5}
+        >
+          <StatBox
+            title={airAlert || 'XXX'}
+            subtitle="Air Quality"
+            progress="1"
+            increase=""
+            icon={<StackedLineChartIcon sx={{ color: colors.greenAccent[600], fontSize: '26px' }} />}
           />
         </Box>
 
