@@ -97,7 +97,7 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           </linearGradient>
         </defs>
         <CartesianGrid stroke={colors.grey[100]} />
-        <XAxis dataKey="Time" tick={{ fill: colors.grey[100] }} />
+        <XAxis dataKey="Time" tick={{ fill: colors.grey[100] }} interval={'preserveStartEnd'}/>
         <YAxis tick={{ fill: colors.grey[100] }} />
         <Tooltip containerStyle={{ color: colors.primary[500] }} />
         <Legend formatter={renderLegendText} />
