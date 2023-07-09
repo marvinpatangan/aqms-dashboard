@@ -84,16 +84,16 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
             <stop offset="95%" stopColor={colors.redAccent[500]} stopOpacity={0} />
           </linearGradient>
           <linearGradient id="gradientGasValue" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={colors.greenAccent[500]} stopOpacity={0.8} />
-            <stop offset="95%" stopColor={colors.greenAccent[500]} stopOpacity={0} />
+            <stop offset="5%" stopColor={colors.blueAccent[100]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.blueAccent[100]} stopOpacity={0} />
           </linearGradient>
           <linearGradient id="gradientHumidity" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={colors.blueAccent[300]} stopOpacity={0.8} />
-            <stop offset="95%" stopColor={colors.blueAccent[300]} stopOpacity={0} />
+            <stop offset="5%" stopColor={colors.blueAccent[500]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.blueAccent[500]} stopOpacity={0} />
           </linearGradient>
           <linearGradient id="gradientTemperature" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor={colors.redAccent[200]} stopOpacity={0.8} />
-            <stop offset="95%" stopColor={colors.redAccent[200]} stopOpacity={0} />
+            <stop offset="5%" stopColor={colors.greenAccent[500]} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={colors.greenAccent[500]} stopOpacity={0} />
           </linearGradient>
         </defs>
         <CartesianGrid stroke={colors.grey[100]} />
@@ -105,31 +105,31 @@ const LineGraph = ({ isCustomLineColors = false, isDashboard = false }) => {
           type="monotone"
           dataKey="Pressure"
           stroke={colors.redAccent[500]}
-          strokeWidth={2.5}
+          strokeWidth={2}
           fill="url(#gradientPressure)"
           dot={{ stroke: colors.background }}
         />
         <Area
           type="monotone"
           dataKey="GasValue"
-          stroke={colors.greenAccent[500]}
-          strokeWidth={2.5}
+          stroke={colors.blueAccent[100]}
+          strokeWidth={2}
           fill="url(#gradientGasValue)"
           dot={{ stroke: colors.background }}
         />
         <Area
           type="monotone"
           dataKey="Humidity"
-          stroke={colors.blueAccent[300]}
-          strokeWidth={2.5}
+          stroke={colors.blueAccent[500]}
+          strokeWidth={2}
           fill="url(#gradientHumidity)"
           dot={{ stroke: colors.background }}
         />
         <Area
           type="monotone"
           dataKey="Temperature"
-          stroke={colors.redAccent[100]}
-          strokeWidth={2.5}
+          stroke={colors.greenAccent[500]}
+          strokeWidth={2}
           fill="url(#gradientTemperature)"
           dot={{ stroke: colors.background }}
         />
